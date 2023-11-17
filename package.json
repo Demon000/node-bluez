@@ -12,7 +12,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -r dist/ && tsc",
+    "build": "rm -rf dist/ && tsc",
     "lint": "eslint . --ext .ts",
     "generate-dbus": "./helper/dbus-client-interface-generator.js --system --full -p --variant-any -t typescript-class-auto.ts -o src/dbus/ -r org.bluez /",
     "prepublish": "npm run lint && npm run build"
