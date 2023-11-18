@@ -1,6 +1,9 @@
 import * as DBus from "dbus-next";
 import { EventEmitter } from "events";
 
+export type ObjectVariantSignatures<T extends Record<string, any>> = Partial<Record<keyof T, string>>;
+export type ObjectVariants<T extends Record<string, any>> = Record<keyof T, DBus.Variant>;
+
 function getDbusArrayTypes(arr: any[]): string[] {
     return arr
         .map(detectDbusType)
@@ -62,19 +65,28 @@ export function wrapDbusVariant(obj: any, type?: string): DBus.Variant {
  * This will create `a{sv}` signature
  * @param obj
  */
-export function wrapDbusVariantObject(obj: { [key: string]: any }): { [key: string]: DBus.Variant } {
-    const res = Object.assign({}, obj);
-    for (const key in res) {
-        res[key] = wrapDbusVariant(res[key]);
+export function wrapDbusVariantObject<O extends Record<string, any>>(
+    obj: O,
+    signatures?: ObjectVariantSignatures<O>,
+): ObjectVariants<O> {
+    const res: Partial<ObjectVariants<O>> = {};
+
+    for (const key in obj) {
+        const type = signatures === undefined ? undefined : signatures[key];
+        res[key] = wrapDbusVariant(obj[key], type) as any;
     }
-    return res;
+
+    return res as ObjectVariants<O>;
 }
 /**
  * This will create `av` signature
  * @param obj
  */
-export function wrapDbusVariantArray(obj: any[]): DBus.Variant[] {
-    return obj.map((v) => wrapDbusVariant(v));
+export function wrapDbusVariantArray(obj: any[], signatures?: string[]): DBus.Variant[] {
+    return obj.map((v, i) => {
+        const type = signatures === undefined ? undefined : signatures[i];
+        return wrapDbusVariant(v, type);
+    });
 }
 
 export function wrapDbusSignature(obj: any, type: string): any {

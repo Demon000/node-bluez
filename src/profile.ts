@@ -1,4 +1,5 @@
 import { Device } from "./device";
+import { ObjectVariantSignatures } from "./utilts";
 
 export interface ProfileOptions {
     /**
@@ -76,6 +77,13 @@ export interface ProfileOptions {
     */
     Features: number;
 }
+
+export const ProfileOptionsSignature: ObjectVariantSignatures<ProfileOptions> = {
+    Channel: "q",
+    PSM: "q",
+    Version: "q",
+    Features: "q",
+};
 
 export interface Profile {
     readonly ProfileOptions: Partial<ProfileOptions>;

@@ -1,5 +1,5 @@
 import * as DBus from "dbus-next";
-import { Profile } from "./profile";
+import { Profile, ProfileOptionsSignature } from "./profile";
 import { Agent } from "./agent";
 import { Adapter } from "./adapter";
 import { Device } from "./device";
@@ -87,7 +87,7 @@ export class Bluez {
         return this.profileManager.RegisterProfile(
             this.options.userInterfacesPath,
             profile.UUID,
-            wrapDbusVariantObject(profile.ProfileOptions),
+            wrapDbusVariantObject(profile.ProfileOptions, ProfileOptionsSignature),
         );
     }
     public unregisterProfile(profile: Profile) {
