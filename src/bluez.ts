@@ -80,18 +80,27 @@ export class Bluez {
      * Possible errors: org.bluez.Error.InvalidArguments
      *                  org.bluez.Error.AlreadyExists
      **/
-    public registerProfile(profile: Profile) {
+    public registerProfile(profile: Profile, path?: string) {
         const wrappedProfile = new ProfileWrapper(profile, this);
         // register wrapped service
-        this.bus.export(this.options.userInterfacesPath, wrappedProfile);
+
+        if (path === undefined) {
+            path = this.options.userInterfacesPath;
+        }
+
+        this.bus.export(path, wrappedProfile);
         return this.profileManager.RegisterProfile(
-            this.options.userInterfacesPath,
+            path,
             profile.UUID,
             wrapDbusVariantObject(profile.ProfileOptions, ProfileOptionsSignature),
         );
     }
-    public unregisterProfile(profile: Profile) {
-        return this.profileManager.UnregisterProfile(this.options.userInterfacesPath);
+    public unregisterProfile(path?: string) {
+        if (path === undefined) {
+            path = this.options.userInterfacesPath;
+        }
+
+        return this.profileManager.UnregisterProfile(path);
     }
 
     /**
