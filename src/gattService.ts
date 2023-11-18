@@ -5,7 +5,10 @@ import { Bluez } from "./bluez";
 import { OrgBluezGattCharacteristic1Props } from "./dbus";
 
 export class GattService extends OrgBluezGattService1 {
-    constructor(dbusObject: ProxyObject, private bluez: Bluez) {
+    constructor(
+        dbusObject: ProxyObject,
+        private bluez: Bluez,
+    ) {
         super(dbusObject);
     }
 

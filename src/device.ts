@@ -6,7 +6,10 @@ import { OrgBluezGattService1Props } from "./dbus/GattService1";
 import { Bluez } from "./bluez";
 
 export class Device extends OrgBluezDevice1 {
-    constructor(dbusObject: ProxyObject, private bluez: Bluez) {
+    constructor(
+        dbusObject: ProxyObject,
+        private bluez: Bluez,
+    ) {
         super(dbusObject);
     }
 

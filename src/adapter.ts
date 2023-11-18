@@ -12,7 +12,10 @@ interface AdapterEvents {
     DeviceRemoved: (address: string) => void;
 }
 export class Adapter extends OrgBluezAdapter1<AdapterEvents> {
-    constructor(dbusObject: ProxyObject, private bluez: Bluez) {
+    constructor(
+        dbusObject: ProxyObject,
+        private bluez: Bluez,
+    ) {
         super(dbusObject);
 
         this.bluez.getObjectManager().on("InterfacesAdded", (objPath, interfaces) => {
