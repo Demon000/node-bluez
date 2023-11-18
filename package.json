@@ -1,6 +1,6 @@
 {
   "name": "bluez",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Bluez5 D-Bus bindings for easy to use bluetooth access in Node.js",
   "keywords": [
     "bluez",
@@ -17,15 +17,15 @@
     "generate-dbus": "./helper/dbus-client-interface-generator.js --system --full -p --variant-any -t typescript-class-auto.ts -o src/dbus/ -r org.bluez /",
     "prepublish": "npm run lint && npm run build"
   },
-  "author": "WaeCo <aaqqws@googlemail.com>",
+  "author": "Demon000 <demonsingur@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/waeco/node-bluez#readme",
+  "homepage": "https://github.com/Demon000/node-bluez#readme",
   "repository": {
     "type": "git",
-    "url": "git://github.com/waeco/node-bluez.git"
+    "url": "git://github.com/Demon000/node-bluez.git"
   },
   "bugs": {
-    "url": "https://github.com/waeco/node-bluez/issues"
+    "url": "https://github.com/Demon000/node-bluez/issues"
   },
   "os": [
     "!win32"
