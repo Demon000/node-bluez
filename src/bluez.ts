@@ -28,7 +28,12 @@ export class Bluez {
     private adapterCache = new Map<DBus.ObjectPath, WeakRef<Adapter>>();
 
     constructor(options?: Partial<BluezOptions>) {
-        this.bus = options && options.bus ? options.bus : DBus.systemBus();
+        this.bus =
+            options && options.bus
+                ? options.bus
+                : DBus.systemBus({
+                      negotiateUnixFd: true,
+                  });
         this.options = Object.assign(
             {
                 bus: this.bus,
