@@ -1,6 +1,6 @@
 {
   "name": "bluez",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Bluez5 D-Bus bindings for easy to use bluetooth access in Node.js",
   "keywords": [
     "bluez",
