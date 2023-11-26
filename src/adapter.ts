@@ -29,7 +29,7 @@ export class Adapter extends OrgBluezAdapter1<AdapterEvents> {
             }
         });
         this.bluez.getObjectManager().on("InterfacesRemoved", (objPath, interfaces) => {
-            if (objPath.startsWith(dbusObject.path) && "org.bluez.Device1" in interfaces) {
+            if (objPath.startsWith(dbusObject.path) && interfaces.includes("org.bluez.Device1")) {
                 debug("Device Removed", objPath);
                 // keep subnodes array up to date
                 this.dbusObject.nodes = this.dbusObject.nodes.filter((p) => p !== objPath);
