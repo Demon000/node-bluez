@@ -58,10 +58,15 @@ export class Bluez {
         return this.objectManager;
     }
 
-    public getAdapter(name = "hci0"): Promise<Adapter> {
+    public getAdapter(searchedName?: string): Promise<Adapter> {
         const adapterNode = this.bluezRootObject.nodes.find((node) => {
             const path = node.split("/");
-            return path[path.length - 1] === name;
+            const name = path[path.length - 1];
+            if (searchedName === undefined) {
+                return name.startsWith("hci");
+            } else {
+                return name === searchedName;
+            }
         });
         if (adapterNode === undefined) throw new DBus.DBusError("org.bluez.Error.DoesNotExist", "Adapter not found");
         return this.getAdapterFromObject(adapterNode);
