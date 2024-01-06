@@ -31,7 +31,7 @@
     "!win32"
   ],
   "files": [
-    "dist/**/*"
+    "dist"
   ],
   "dependencies": {
     "dbus-next": "npm:@tanislav000/dbus-next@^0.10.4",
