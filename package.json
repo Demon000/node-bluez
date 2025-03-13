@@ -1,6 +1,6 @@
 {
   "name": "@tanislav000/bluez",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Bluez5 D-Bus bindings for easy to use bluetooth access in Node.js",
   "keywords": [
     "bluez",
@@ -34,7 +34,7 @@
     "dist"
   ],
   "dependencies": {
-    "dbus-next": "npm:@tanislav000/dbus-next@^0.10.6",
+    "dbus-next": "npm:@tanislav000/dbus-next@^0.10.7",
     "debug": "^4.1.1"
   },
   "devDependencies": {
